@@ -14,7 +14,7 @@ export default function (pi: ExtensionAPI) {
 				input: ["text", "image"],
 				contextWindow: 1_000_000,
 				maxTokens: 64_000,
-				cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 },
+				cost: { input: 200, output: 1200, cacheRead: 20, cacheWrite: 250 },
 			},
 			{
 				id: "deepseek-v4-pro",
@@ -23,7 +23,7 @@ export default function (pi: ExtensionAPI) {
 				input: ["text"],
 				contextWindow: 1_000_000,
 				maxTokens: 384_000,
-				cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 },
+				cost: { input: 1200, output: 2400, cacheRead: 100, cacheWrite: 0 },
 			},
 			{
 				id: "deepseek-v4-flash",
@@ -32,7 +32,7 @@ export default function (pi: ExtensionAPI) {
 				input: ["text"],
 				contextWindow: 1_000_000,
 				maxTokens: 384_000,
-				cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 },
+				cost: { input: 100, output: 200, cacheRead: 20, cacheWrite: 0 },
 			},
 			{
 				id: "kimi-k2.6",
@@ -41,7 +41,7 @@ export default function (pi: ExtensionAPI) {
 				input: ["text", "image"],
 				contextWindow: 256_000,
 				maxTokens: 16_000,
-				cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 },
+				cost: { input: 650, output: 2700, cacheRead: 65, cacheWrite: 812.5 },
 			},
 			{
 				id: "glm-5.1",
@@ -50,7 +50,7 @@ export default function (pi: ExtensionAPI) {
 				input: ["text"],
 				contextWindow: 202_000,
 				maxTokens: 128_000,
-				cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 },
+				cost: { input: 600, output: 2400, cacheRead: 60, cacheWrite: 750 },
 			},
 			{
 				id: "MiniMax-M2.5",
@@ -59,7 +59,7 @@ export default function (pi: ExtensionAPI) {
 				input: ["text"],
 				contextWindow: 200_000,
 				maxTokens: 128_000,
-				cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 },
+				cost: { input: 210, output: 840, cacheRead: 42, cacheWrite: 0 },
 			},
 		],
 	});

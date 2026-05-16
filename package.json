@@ -1,0 +1,9 @@
+{
+  "name": "pi-more-models",
+  "version": "1.0.0",
+  "description": "Additional model providers for pi",
+  "keywords": ["pi-package"],
+  "pi": {
+    "extensions": ["./extensions"]
+  }
+}

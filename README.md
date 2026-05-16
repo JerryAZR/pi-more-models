@@ -35,9 +35,7 @@ API key resolution (in priority order):
 
 - The token plan also supports older models such as **GLM-5** and **Kimi K2.5**. These are intentionally omitted to keep the model list lean. If you need them, open an issue or override them locally via `models.json`.
 - Cost tracking is an **estimate** of credit consumption per request, in **credits per 1M tokens**. The ¥→credit conversion ratio varies by subscription tier, so credits are the stable unit:
-  - ¥150 / 25,000 credits → 1 credit = ¥0.006
-  - ¥500 / 100,000 credits → 1 credit = ¥0.005
-  - Direct API (pay-as-you-go): 100 credits = ¥1 → 1 credit = ¥0.01
+  The ¥→credit ratio differs by subscription tier — check your plan for the exact conversion.
   Source rates are from Aliyun's pay-as-you-go RMB pricing, multiplied by 100. The token plan may apply different multipliers or discounts, so displayed costs may not exactly match your credit balance deductions.
   Per-model rates are in `cost-rates.csv` (RMB/1M tokens; multiply by 100 for credits).
 - **cacheWrite** is set to `0` for models where Aliyun docs do not list an explicit cache creation rate (deepseek-v4-pro, deepseek-v4-flash, MiniMax-M2.5). If those models support Anthropic-style `cache_control`, the actual cache creation cost is unknown and will not be tracked.

@@ -34,5 +34,9 @@ API key resolution (in priority order):
 ### Notes
 
 - The token plan also supports older models such as **GLM-5** and **Kimi K2.5**. These are intentionally omitted to keep the model list lean. If you need them, open an issue or override them locally via `models.json`.
-- Pricing (`cost`) is not configured in this provider definition. Token-plan billing is typically pre-paid; if you need per-request cost tracking, set the `cost` fields in your local `models.json` overrides.
+- Cost tracking uses **credits per 1M tokens** — the token plan's virtual currency. The ¥→credit conversion ratio varies by subscription tier, so credits are the stable unit:
+  - ¥150 / 25,000 credits → 1 credit = ¥0.006
+  - ¥500 / 100,000 credits → 1 credit = ¥0.005
+  - Direct API (pay-as-you-go): 100 credits = ¥1 → 1 credit = ¥0.01
+  Fill in per-model rates in `cost-rates.csv`, then run the update script to apply them to the extension.
 - All models are exposed via the `anthropic-messages` API. If Aliyun changes the compatibility layer, you may need to switch to `openai-completions` with model-specific `compat` flags.

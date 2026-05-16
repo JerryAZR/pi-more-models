@@ -1,3 +1,4 @@
-*.csv
+# Collaborative tracking file (not for distribution)
+aliyun-bailian-model-params.csv
 .~lock.*#
 node_modules/

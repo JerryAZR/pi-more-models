@@ -1,6 +1,11 @@
 # Changelog
 
-## 1.1.0 (2026-06-17)
+## 1.1.1 (2026-07-06)
+
+### Changed
+- `ark-coding` provider: replaced `kimi-k2.6` with `kimi-k2.7-code`
+
+## 1.1.0 (2026-07-06)
 
 ### Added
 - New provider: `ark-coding` (Volcengine Coding Plan)

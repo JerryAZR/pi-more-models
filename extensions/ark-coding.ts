@@ -17,8 +17,8 @@ export default function (pi: ExtensionAPI) {
 				cost: { input: 8, output: 28, cacheRead: 2, cacheWrite: 0 },
 			},
 			{
-				id: "kimi-k2.6",
-				name: "Kimi K2.6",
+				id: "kimi-k2.7-code",
+				name: "Kimi K2.7 Code",
 				reasoning: true,
 				input: ["text", "image"],
 				contextWindow: 256_000,

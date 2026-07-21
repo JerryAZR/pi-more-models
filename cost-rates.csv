@@ -1,7 +1,0 @@
-model_id,input,output,cacheRead,cacheWrite
-qwen3.6-plus,,,,
-deepseek-v4-pro,,,,
-deepseek-v4-flash,,,,
-kimi-k2.6,,,,
-glm-5.1,,,,
-MiniMax-M2.5,,,,

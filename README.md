@@ -1,14 +1,16 @@
-# pi-more-models
+# pi-curated-models
 
-Additional model providers for [pi](https://pi.dev).
+Custom model providers and built-in provider overrides for [pi](https://pi.dev).
 
 ## Installation
 
 ```bash
-pi install git:github.com/JerryAZR/pi-more-models
+pi install git:github.com/JerryAZR/pi-curated-models
 ```
 
-## Bailian Token Plan
+## Providers
+
+### Bailian Token Plan
 
 Provider ID: `bailian-token-plan`
 
@@ -20,23 +22,98 @@ API key resolution (in priority order):
 2. Environment variable — `BAILIAN_TOKEN_PLAN_API_KEY`
 3. `models.json` fallback
 
-### Configured Models
+API: `anthropic-messages`
+
+#### Configured Models
 
 | Model ID | Name | Context Window | Max Output Tokens | Reasoning | Vision |
 |----------|------|---------------|-------------------|-----------|--------|
-| `qwen3.6-plus` | Qwen 3.6 Plus | 1,000,000 | 64,000 | ✅ | ✅ |
+| `qwen3.7-max` | Qwen 3.7 Max | 1,000,000 | 64,000 | ✅ | ❌ |
 | `deepseek-v4-pro` | DeepSeek V4 Pro | 1,000,000 | 384,000 | ✅ | ❌ |
 | `deepseek-v4-flash` | DeepSeek V4 Flash | 1,000,000 | 384,000 | ✅ | ❌ |
-| `kimi-k2.6` | Kimi K2.6 | 256,000 | 16,000 | ✅ | ✅ |
-| `glm-5.1` | GLM 5.1 | 202,000 | 128,000 | ✅ | ❌ |
+| `kimi-k2.7-code` | Kimi K2.7 Code | 256,000 | 16,000 | ✅ | ✅ |
+| `glm-5.2` | GLM 5.2 | 1,000,000 | 128,000 | ✅ | ❌ |
 | `MiniMax-M2.5` | MiniMax M2.5 | 200,000 | 128,000 | ✅ | ❌ |
 
-### Notes
+Cost tracking is in credits per 1M tokens (multiplied from Aliyun RMB pricing).
 
-- The token plan also supports older models such as **GLM-5** and **Kimi K2.5**. These are intentionally omitted to keep the model list lean. If you need them, open an issue or override them locally via `models.json`.
-- Cost tracking is an **estimate** of credit consumption per request, in **credits per 1M tokens**. The ¥→credit conversion ratio varies by subscription tier, so credits are the stable unit:
-  The ¥→credit ratio differs by subscription tier — check your plan for the exact conversion.
-  Source rates are from Aliyun's pay-as-you-go RMB pricing, multiplied by 100. The token plan may apply different multipliers or discounts, so displayed costs may not exactly match your credit balance deductions.
-  Per-model rates are in `cost-rates.csv` (RMB/1M tokens; multiply by 100 for credits).
-- **cacheWrite** is set to `0` for models where Aliyun docs do not list an explicit cache creation rate (deepseek-v4-pro, deepseek-v4-flash, MiniMax-M2.5). If those models support Anthropic-style `cache_control`, the actual cache creation cost is unknown and will not be tracked.
-- All models are exposed via the `anthropic-messages` API. If Aliyun changes the compatibility layer, you may need to switch to `openai-completions` with model-specific `compat` flags.
+---
+
+### Volcengine Coding Plan
+
+Provider ID: `ark-coding`
+
+Endpoint: `https://ark.cn-beijing.volces.com/api/coding`
+
+API key resolution (in priority order):
+
+1. `auth.json` — `"ark-coding": { "type": "api_key", "key": "..." }`
+2. Environment variable — `ARK_API_KEY`
+3. `models.json` fallback
+
+API: `anthropic-messages`
+
+#### Configured Models
+
+| Model ID | Name | Context Window | Max Output Tokens | Reasoning | Vision |
+|----------|------|---------------|-------------------|-----------|--------|
+| `glm-5.2` | GLM 5.2 | 1,000,000 | 128,000 | ✅ | ❌ |
+| `kimi-k2.7-code` | Kimi K2.7 Code | 256,000 | 16,000 | ✅ | ✅ |
+| `minimax-m3` | MiniMax M3 | 1,000,000 | 64,000 | ✅ | ✅ |
+
+---
+
+### Kimi Coding (built-in override)
+
+Provider ID: `kimi-coding`
+
+Overrides the built-in `kimi-coding` provider. Keeps only selected models.
+
+Endpoint: `https://api.kimi.com/coding`
+
+API key resolution (in priority order):
+
+1. `auth.json` — `"kimi-coding": { "type": "api_key", "key": "..." }`
+2. Environment variable — `KIMI_API_KEY`
+3. `models.json` fallback
+
+API: `anthropic-messages`
+
+#### Configured Models
+
+| Model ID | Name | Context Window | Max Output Tokens | Reasoning | Vision | Thinking Levels |
+|----------|------|---------------|-------------------|-----------|--------|-----------------|
+| `k3` | Kimi K3 | 1,048,576 | 131,072 | ✅ | ✅ | low, high, max |
+| `kimi-for-coding` | Kimi For Coding | 262,144 | 32,768 | ✅ | ✅ | — |
+| `kimi-for-coding-highspeed` | Kimi For Coding HighSpeed | 262,144 | 32,768 | ✅ | ✅ | — |
+
+K3 uses adaptive thinking with configurable reasoning effort: `low`, `high` (default), `max`.
+
+---
+
+### OpenCode Zen Go (built-in override)
+
+Provider ID: `opencode-go`
+
+Overrides the built-in `opencode-go` provider. Keeps only selected models.
+
+Endpoint: `https://opencode.ai/zen/go/v1`
+
+API key resolution (in priority order):
+
+1. `auth.json` — `"opencode-go": { "type": "api_key", "key": "..." }`
+2. Environment variable — `OPENCODE_API_KEY`
+3. `models.json` fallback
+
+API: `openai-completions`
+
+#### Configured Models
+
+| Model ID | Name | Context Window | Max Output Tokens | Reasoning | Vision | Thinking Format |
+|----------|------|---------------|-------------------|-----------|--------|-----------------|
+| `grok-4.5` | Grok 4.5 | 500,000 | 500,000 | ✅ | ✅ | — |
+| `glm-5.2` | GLM-5.2 | 1,000,000 | 131,072 | ✅ | ❌ | — |
+| `deepseek-v4-flash` | DeepSeek V4 Flash | 1,000,000 | 384,000 | ✅ | ❌ | deepseek |
+| `deepseek-v4-pro` | DeepSeek V4 Pro | 1,000,000 | 384,000 | ✅ | ❌ | deepseek |
+
+Session attribution headers (`x-opencode-session`, `x-opencode-client`) are still sent automatically by pi, since the provider ID `opencode-go` is recognized.

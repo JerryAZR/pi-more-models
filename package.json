@@ -1,7 +1,7 @@
 {
-  "name": "pi-more-models",
-  "version": "1.1.1",
-  "description": "Additional model providers for pi",
+  "name": "pi-curated-models",
+  "version": "2.0.0",
+  "description": "Override built-in pi providers with curated model selections",
   "keywords": ["pi-package"],
   "pi": {
     "extensions": ["./extensions"]

@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.0.0 (2026-07-??)
+
+### Added
+- **New `kimi-coding` override**: Keeps only `k3`, `kimi-for-coding`, `kimi-for-coding-highspeed`. K3 supports thinking levels low/high/max with default high.
+- **New `opencode-go` override**: Keeps only `grok-4.5`, `glm-5.2`, `deepseek-v4-flash`, `deepseek-v4-pro`.
+
+### Changed
+- Updated `README.md` to document all four providers (custom + overrides).
+
 ## 1.1.1 (2026-07-06)
 
 ### Changed
